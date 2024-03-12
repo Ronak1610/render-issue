@@ -99,12 +99,15 @@ fun TopBar() {
             when (states)
             {
                 1-> {
-                   quotesWIthImage(textLabelResource = (R.string.its_our_name), imageResource = R.drawable.ayase_1_, contentDescs =R.string.its_our_name , onImageCick ={states=2})
+                   quotesWithImage(textLabelResource = (R.string.its_our_name),
+                       imageResource = R.drawable.ayase_1_,
+                       contentDescs =R.string.its_our_name ,
+                       onImageCick ={states=2})
 
 
                 }
                 2-> {
-                    quotesWIthImage(
+                    quotesWithImage(
                         textLabelResource = (R.string.kuso_gaki),
                         imageResource = (R.drawable.animediscover_com_1_),
                         contentDescs = (R.string.kuso_gaki),
@@ -113,7 +116,7 @@ fun TopBar() {
                     )
                 }
                 3-> {
-                    quotesWIthImage(
+                    quotesWithImage(
                         textLabelResource = (R.string.kimoi),
                         imageResource = R.drawable.animediscover_com_2_,
                         contentDescs = R.string.kimoi,
@@ -121,7 +124,7 @@ fun TopBar() {
                     )
                 }
                 else -> {
-                    quotesWIthImage(
+                    quotesWithImage(
                         textLabelResource = (R.string.bokurawa),
                         imageResource = R.drawable.animediscover_com_3_,
                         contentDescs = R.string.bokurawa,
@@ -136,12 +139,12 @@ fun TopBar() {
     }
 }
 @Composable
-fun quotesWIthImage(
+fun quotesWithImage(
     textLabelResource :Int,
     imageResource :Int,
     contentDescs :Int,
     onImageCick :() -> Unit,
-    modifier: Modifier= Modifier
+    modifier: Modifier= Modifier.fillMaxSize()
 
 
 )
@@ -151,22 +154,23 @@ Box (modifier=modifier)
 Column(horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center,
     modifier=Modifier.fillMaxSize()) {
-    Button(onClick = onImageCick, shape = RoundedCornerShape(R.dimen.button_corner_radius), colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer))
+    Button(onClick = onImageCick, shape = RoundedCornerShape(47.dp), colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer))
     {
 
         Image(painter = painterResource(imageResource), contentDescription = stringResource(contentDescs),modifier= Modifier
             .width(
                 dimensionResource(id = R.dimen.button_image_width)
             )
-            .height(dimensionResource(id = R.dimen.button_image_height))
+            .height(dimensionResource(R.dimen.button_image_height))
             .padding(dimensionResource(id = R.dimen.button_interior_padding))
 
 
 
         )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_vertical)))
-        Text(text = stringResource(textLabelResource), style = MaterialTheme.typography.bodyLarge)
+
     }
+    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_vertical)))
+    Text(text = stringResource(textLabelResource), style = MaterialTheme.typography.bodyLarge)
 
 }
 
